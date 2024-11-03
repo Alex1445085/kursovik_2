@@ -16,11 +16,11 @@ public class ExaminerServiceImpl implements ExaminerService {
 
     @Override
     public Set<Question> getQuestion(int amount) {
-        examQuestion.clear();
         List<Question> allQestion = serv.allQuestion();//new ArrayList<>();
         if (amount < 1 || amount > serv.allQuestion().size()) {
-            throw new InvalidNumberException("IllegalNumbException");
+            throw new InvalidNumberException("InvalidNumberException");
         }
+        examQuestion.clear();
         int i = 0;
         while (i < amount) {
             examQuestion.add(allQestion.get(randm(allQestion.size())));

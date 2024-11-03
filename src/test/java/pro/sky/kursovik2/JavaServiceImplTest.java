@@ -30,12 +30,10 @@ public class JavaServiceImplTest {
     }
     @Test
     public void removeQuestion() {
-        Question expected = temp;
         javaServ.addQuestion(temp.getQuestion(), temp.getAnswer());
         int l1 = javaServ.allQuestion().size();
-        Question actual = javaServ.removeQuestion(temp.getQuestion(), temp.getAnswer());
+        javaServ.removeQuestion(temp.getQuestion(), temp.getAnswer());
         int l2 = javaServ.allQuestion().size();
-        assertEquals(expected, actual);
         assertEquals(l1, l2 + 1);
         assertThrows(BadRequestException.class,
                 () -> javaServ.removeQuestion(" - ", " - "),

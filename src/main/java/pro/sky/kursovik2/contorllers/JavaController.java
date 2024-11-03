@@ -4,6 +4,9 @@ import org.springframework.web.bind.annotation.*;
 import pro.sky.kursovik2.exceptions.BadRequestException;
 import pro.sky.kursovik2.exceptions.QuestionAlreadyExistException;
 import pro.sky.kursovik2.interfaces.JavaService;
+import pro.sky.kursovik2.model.Question;
+
+import java.util.Collection;
 
 @RestController
 @RequestMapping("/exam")
@@ -12,19 +15,21 @@ public class JavaController {
     public JavaController(JavaService javaServ) { this.javaServ = javaServ; }
 
     @GetMapping("/java/add")
-    public String addQuestion(@RequestParam("question") String question,
-                              @RequestParam("answer") String answer) {
-        try{ return "Add " + javaServ.addQuestion(question, answer).toString(); }
-        catch (QuestionAlreadyExistException e) { return "Такой question уже существует."; }
+    public Question addQuestion(@RequestParam("question") String question,
+                                @RequestParam("answer") String answer) {
+        return javaServ.addQuestion(question, answer);
     }
     @GetMapping("/java/remove")
-    public String removeQuestion(@RequestParam("question") String question,
-                              @RequestParam("answer") String answer) {
-        try{ return "Remove " + javaServ.removeQuestion(question, answer).toString(); }
-        catch (BadRequestException e) { return "No the same question in allQuestion"; }
+    public void removeQuestion(@RequestParam("question") String question,
+                               @RequestParam("answer") String answer) {
+        javaServ.removeQuestion(question, answer);
     }
+//    public String removeQuestion(@RequestParam("question") String question,
+//                              @RequestParam("answer") String answer) {
+//         return "Remove " + javaServ.removeQuestion(question, answer).toString();
+//    }
     @GetMapping("/java")
-    public String allQuestions() {
-        return "All questions = " + javaServ.allQuestion().toString();
+    public Collection allQuestions() {
+        return javaServ.allQuestion();
     }
 }

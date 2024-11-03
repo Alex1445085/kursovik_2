@@ -28,16 +28,17 @@ public class ExaminerServiceImplTest {
     @Test
     public void getQuestion() {
         when(examServ.getQuestion(1)).thenReturn(questionForTest);
-        Set<Question> expected = Set.of(new Question( "q1","a1"));
+        Set<Question> expected = Set.of(new Question("q1", "a1"));
         Set<Question> actual = examServ.getQuestion(1);
         assertEquals(actual, expected);
         verify(examServ, times(1)).getQuestion(1);
     }
+
 //    @Test
-//    public void getQueThrow() {
-//        when(examServ.getQuestion(1)).thenReturn(questionForTest);
+//    public void getQuestionThrow() {//when(examServ.getQuestion(10)).thenReturn(questionForTest);
 //        assertThrows(InvalidNumberException.class,
-//                () -> examServ.getQuestion(100),
+//                () -> examServ.getQuestion(1000),
 //                "InvalidNumberException");
+//
 //    }
 }

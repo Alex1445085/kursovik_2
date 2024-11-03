@@ -44,11 +44,10 @@ public class JavaServiceImpl implements JavaService {
     }
 
     @Override
-    public Question removeQuestion(String question, String answer) {
+    public void removeQuestion(String question, String answer) {
         Question temp = new Question(question, answer);
         if (allQuestions.contains(temp)) { allQuestions.remove(temp); }
-        else {throw new BadRequestException("There are no the same question in allQuestion"); }
-        return temp;
+        else { throw new BadRequestException("There are no the same question in allQuestion"); }
     }
 
     @Override
